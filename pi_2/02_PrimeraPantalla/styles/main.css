@@ -31,5 +31,8 @@ button.menu-object:hover:not(:active){
 
 body{
 	background-color : red;
+	font: bold 150% monospace;
 }
+
+
 
