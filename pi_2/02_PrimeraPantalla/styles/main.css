@@ -29,3 +29,7 @@ button.menu-object:hover:not(:active){
 	height: 85px;
 }
 
+body{
+	background-color : red;
+}
+
