@@ -1,6 +1,7 @@
 #title{
 	font-size: 26px;
 	line-height: 75px;
+	color : white;
 }
 
 .menu-object{
@@ -15,13 +16,15 @@
 
 p{
 	text-align: center;
-	font: bold 150% monospace;
+	font-size: 20 px;
+	
 }
 
 button.menu-object:active{
 	font-size: 18px;
 	width: 275px;
 	height: 70px;
+	
 }
 
 button.menu-object:hover:not(:active){
@@ -29,11 +32,33 @@ button.menu-object:hover:not(:active){
 	width: 325px;
 	height: 85px;
 }
-
 body{
-	background-color : red;
-	font: bold 150% monospace;
+	background-color : blue;
+	display: grid; 
+	grid-gap : 1 em;
+	min-height: 60vh;
+	
 }
 
+}
+img{
+	border : 3 px;
+	
+}
+.image{
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	padding:20 px;
+	heigth: 100 vh;
+}
+#imgs{
+	display:block;
+	margin-left: 50 px;
+	margin-right: 50 px;
+}
+a.menu-object{
+	text-align: center;
+}
 
 
