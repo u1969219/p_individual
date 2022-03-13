@@ -33,7 +33,7 @@ button.menu-object:hover:not(:active){
 	height: 85px;
 }
 body{
-	background-color : blue;
+	background-color : red;
 	display: grid; 
 	grid-gap : 1 em;
 	min-height: 60vh;
