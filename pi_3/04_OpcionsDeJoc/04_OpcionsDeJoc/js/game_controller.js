@@ -1,14 +1,24 @@
 const back = "../resources/back.png";
 const items = ["../resources/cb.png","../resources/co.png","../resources/sb.png",
 "../resources/so.png","../resources/tb.png","../resources/to.png"];
-var options_data = {
-	cards:2, dificulty:"hard"
-};
+
 var load = function(){
 	var json = localStorage.getItem("config") || '{"cards":2,"dificulty":"hard"}';
-	options_data = JSON.parse(json);
+	opcions_data = JSON.parse(json);
 };
+
+var opcions_data = {
+	cards:2, dificulty:"hard"
+};
+
 load();
+
+function ocultar_cartes() {
+	for (var i = 0; i < game.items.length; i++){
+		game.current_card[i].texture=back;
+		game.current_card[i].done=false;
+	}
+}
 
 var game = new Vue({
 	el: "#game_id",
@@ -16,10 +26,13 @@ var game = new Vue({
 		username:'',
 		current_card: [],
 		items: [],
-		num_cards: options_data.cards,
-		bad_clicks: 0
+		num_cards: 2,
+		bad_clicks: 0,
+		dificulty: "hard"
 	},
 	created: function(){
+		this.num_cards=opcions_data.cards;
+		this.dificulty=opcions_data.dificulty;
 		this.username = sessionStorage.getItem("username","unknown");
 		this.items = items.slice(); // Copiem l'array
 		this.items.sort(function(){return Math.random() - 0.5}); // Array aleatòria
@@ -27,8 +40,12 @@ var game = new Vue({
 		this.items = this.items.concat(this.items); // Dupliquem els elements
 		this.items.sort(function(){return Math.random() - 0.5}); // Array aleatòria
 		for (var i = 0; i < this.items.length; i++){
-			this.current_card.push({done: false, texture: back});
+			this.current_card.push({done: true, texture: this.items[i]});
 		}
+		var milisegons=1500;
+		if (this.dificulty=="hard") milisegons=500;
+		else if (this.dificulty=="normal") milisegons=1000;
+		const myTimeout = setTimeout(ocultar_cartes, milisegons);
 	},
 	methods: {
 		clickCard: function(i){
@@ -65,12 +82,14 @@ var game = new Vue({
 	},
 	computed: {
 		score_text: function(){
-			return 100 - this.bad_clicks * 20;
+			if (this.dificulty=="hard")return 100 - this.bad_clicks * 30;
+			else if (this.dificulty=="normal") return 100 - this.bad_clicks * 20;
+			else return 100 - this.bad_clicks * 10;
 		}
 	}
+	
+	
 });
-
-
 
 
 
